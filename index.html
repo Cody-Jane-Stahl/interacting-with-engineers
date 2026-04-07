@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interacting with Engineers — Cody Stahl</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fff;
+    }
+
+    .container {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    header .subtitle {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 600px;
+    }
+
+    /* ── Sections ── */
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0066cc;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: #333;
+    }
+
+    /* ── Slide Images ── */
+    .slide-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 28px 0;
+    }
+
+    .slide-gallery img {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .slide-gallery .caption {
+      font-size: 0.85rem;
+      color: #777;
+      text-align: center;
+      margin-top: -8px;
+    }
+
+    /* ── Key Concepts List ── */
+    .concepts {
+      list-style: none;
+      margin: 24px 0;
+      padding: 0;
+    }
+
+    .concepts li {
+      padding: 12px 0 12px 20px;
+      border-left: 3px solid #0066cc;
+      margin-bottom: 12px;
+      background: #f9fafb;
+      padding-right: 16px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .concepts li strong {
+      display: block;
+      margin-bottom: 2px;
+      color: #1a1a1a;
+    }
+
+    .concepts li span {
+      font-size: 0.92rem;
+      color: #555;
+    }
+
+    /* ── Callout ── */
+    .callout {
+      background: #f0f6ff;
+      border-left: 4px solid #0066cc;
+      padding: 16px 20px;
+      border-radius: 0 6px 6px 0;
+      margin: 24px 0;
+    }
+
+    .callout p {
+      margin-bottom: 0;
+      color: #1a4a7a;
+      font-size: 0.95rem;
+    }
+
+    /* ── Metrics Grid ── */
+    .metrics-story {
+      margin: 28px 0;
+    }
+
+    .metrics-story .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+
+    .metrics-story .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #0066cc;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .metrics-story .step-content {
+      flex: 1;
+    }
+
+    .metrics-story .step-content strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .metrics-story .step-content span {
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    /* ── Download Link ── */
+    .download-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #0066cc;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-top: 8px;
+      padding: 8px 16px;
+      border: 1px solid #0066cc;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .download-link:hover {
+      background: #0066cc;
+      color: #fff;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      color: #999;
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      header { padding: 40px 0 32px; }
+      header h1 { font-size: 1.6rem; }
+      h2 { font-size: 1.3rem; }
+      section { padding: 36px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <header>
+      <h1>Cody Stahl</h1>
+      <p class="subtitle">Two examples of how I work at the intersection of technical systems and business outcomes.</p>
+    </header>
+
+    <!-- ── Section 1: Interacting with Engineers ── -->
+    <section>
+      <div class="section-label">Training Material</div>
+      <h2>Interacting with Engineers</h2>
+
+      <p>I built this training deck for non-technical program staff who needed to write specifications for software developers. The core insight: if a developer understands clearly <em>what</em> you're trying to do, they'll often have a better idea of <em>how</em> to do it. A PM's job is to make that understanding possible.</p>
+
+      <ul class="concepts">
+        <li>
+          <strong>Separate business logic from implementation details</strong>
+          <span>Specs should answer WHAT and WHY in plain language before addressing HOW in technical terms. When these are tangled together, developers can't apply their own expertise to the solution.</span>
+        </li>
+        <li>
+          <strong>User stories anchor every feature</strong>
+          <span>"As a ___, I want ___, so that ___." One sentence. Zero implementation details. This clarifies WHO the feature serves and WHY it matters before a single line of code is discussed.</span>
+        </li>
+        <li>
+          <strong>Define complex concepts once, reuse by name</strong>
+          <span>If a condition or workflow appears repeatedly in a spec, define it once with both its business meaning and its technical translation. Then refer to it by name. This eliminates copy-paste drift and keeps specs maintainable.</span>
+        </li>
+      </ul>
+
+      <div class="slide-gallery">
+        <img src="slide-specifications.png" alt="Slide: Two aspects of specification — business logic and implementation details">
+        <img src="slide-business-logic.png" alt="Slide: Business logic focuses on WHAT, WHY, and WHO — with an example translating technical SQL into plain language">
+        <img src="slide-user-stories.png" alt="Slide: User story framework — As a role, I want feature, so that reason">
+      </div>
+
+      <div class="callout">
+        <p>This is the same skill as defining platform contracts: making a system's capabilities legible to the teams building on it, so they can build effectively without needing deep infrastructure expertise.</p>
+      </div>
+
+      <a href="Interacting with Engineers - Anonymized.pptx" class="download-link">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12l-4-4h2.5V2h3v6H12L8 12zm-6 2h12v1.5H2V14z"/></svg>
+        Download the full deck (.pptx)
+      </a>
+    </section>
+
+    <!-- ── Section 2: COVID Contact Tracing ── -->
+    <section>
+      <div class="section-label">Case Study</div>
+      <h2>Measuring What Matters</h2>
+
+      <p>During the COVID-19 pandemic, I supported a state public health agency that needed to rapidly scale its contact tracing operations. The critical workflow was bulk case assignment: supervisors had to assign batches of newly reported cases to individual caseworkers every morning. If this process was slow, cases sat unassigned and contacts went untraced.</p>
+
+      <div class="metrics-story">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <strong>Identified the problem</strong>
+            <span>The bulk assignment form was slow enough to be a daily bottleneck. But nobody had measured where the time was actually going.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <strong>Measured it manually</strong>
+            <span>I sat down with a stopwatch and timed each step: form load time, case list rendering, assignment submission, confirmation screen. Raw numbers, no guessing.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <strong>Set thresholds collaboratively</strong>
+            <span>I worked with the division lead to establish acceptable performance targets for each step. These weren't arbitrary benchmarks; they were grounded in the operational reality of morning case assignment.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <strong>Built it into the system</strong>
+            <span>Through this process, I identified the key workflows to instrument permanently. The manual stopwatch exercise became the blueprint for automated performance monitoring, so nobody had to do that again.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p>I care about metrics because I've seen what happens without them. The goal isn't dashboards for the sake of dashboards; it's making performance visible so that teams can act on it before users feel the pain. This approach &mdash; measure manually, set meaningful thresholds, then bake the instrumentation into the system &mdash; is how I think about platform observability.</p>
+      </div>
+    </section>
+
+    <footer>
+      <a href="https://www.linkedin.com/in/codystahl/" target="_blank" rel="noopener">LinkedIn</a>
+    </footer>
+
+  </div>
+
+</body>
+</html>
