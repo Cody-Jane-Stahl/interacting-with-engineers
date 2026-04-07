@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interacting with Engineers — Cody Stahl</title>
+  <title>Cody Stahl — Work Samples</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -39,14 +39,46 @@
       max-width: 600px;
     }
 
-    /* ── Sections ── */
-    section {
-      padding: 48px 0;
-      border-bottom: 1px solid #e5e5e5;
+    /* ── Carousel Nav ── */
+    .carousel-nav {
+      display: flex;
+      gap: 0;
+      margin-top: 32px;
+      border-bottom: 2px solid #e5e5e5;
     }
 
-    section:last-of-type {
-      border-bottom: none;
+    .carousel-nav button {
+      flex: 1;
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #888;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .carousel-nav button:hover {
+      color: #333;
+    }
+
+    .carousel-nav button.active {
+      color: #0066cc;
+      border-bottom-color: #0066cc;
+    }
+
+    /* ── Slides ── */
+    .carousel-slide {
+      display: none;
+      padding: 48px 0;
+    }
+
+    .carousel-slide.active {
+      display: block;
     }
 
     .section-label {
@@ -85,68 +117,19 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
 
-    .slide-gallery .caption {
-      font-size: 0.85rem;
-      color: #777;
-      text-align: center;
-      margin-top: -8px;
-    }
-
-    /* ── Key Concepts List ── */
-    .concepts {
-      list-style: none;
-      margin: 24px 0;
-      padding: 0;
-    }
-
-    .concepts li {
-      padding: 12px 0 12px 20px;
-      border-left: 3px solid #0066cc;
-      margin-bottom: 12px;
-      background: #f9fafb;
-      padding-right: 16px;
-      border-radius: 0 4px 4px 0;
-    }
-
-    .concepts li strong {
-      display: block;
-      margin-bottom: 2px;
-      color: #1a1a1a;
-    }
-
-    .concepts li span {
-      font-size: 0.92rem;
-      color: #555;
-    }
-
-    /* ── Callout ── */
-    .callout {
-      background: #f0f6ff;
-      border-left: 4px solid #0066cc;
-      padding: 16px 20px;
-      border-radius: 0 6px 6px 0;
-      margin: 24px 0;
-    }
-
-    .callout p {
-      margin-bottom: 0;
-      color: #1a4a7a;
-      font-size: 0.95rem;
-    }
-
-    /* ── Metrics Grid ── */
-    .metrics-story {
+    /* ── Steps ── */
+    .steps {
       margin: 28px 0;
     }
 
-    .metrics-story .step {
+    .steps .step {
       display: flex;
       gap: 16px;
       margin-bottom: 20px;
       align-items: flex-start;
     }
 
-    .metrics-story .step-num {
+    .steps .step-num {
       flex-shrink: 0;
       width: 32px;
       height: 32px;
@@ -160,16 +143,16 @@
       justify-content: center;
     }
 
-    .metrics-story .step-content {
+    .steps .step-content {
       flex: 1;
     }
 
-    .metrics-story .step-content strong {
+    .steps .step-content strong {
       display: block;
       margin-bottom: 2px;
     }
 
-    .metrics-story .step-content span {
+    .steps .step-content span {
       color: #555;
       font-size: 0.95rem;
     }
@@ -195,6 +178,54 @@
       color: #fff;
     }
 
+    /* ── Prev/Next ── */
+    .carousel-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      margin-top: 32px;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .carousel-footer button {
+      background: none;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 8px 20px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: #555;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .carousel-footer button:hover {
+      border-color: #0066cc;
+      color: #0066cc;
+    }
+
+    .carousel-footer button:disabled {
+      visibility: hidden;
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .carousel-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ddd;
+      transition: background 0.15s;
+    }
+
+    .carousel-dots span.active {
+      background: #0066cc;
+    }
+
     /* ── Footer ── */
     footer {
       padding: 32px 0;
@@ -217,7 +248,8 @@
       header { padding: 40px 0 32px; }
       header h1 { font-size: 1.6rem; }
       h2 { font-size: 1.3rem; }
-      section { padding: 36px 0; }
+      .carousel-slide { padding: 36px 0; }
+      .carousel-nav button { font-size: 0.85rem; padding: 10px 8px; }
     }
   </style>
 </head>
@@ -228,29 +260,43 @@
     <header>
       <h1>Cody Stahl</h1>
       <p class="subtitle">Two examples of how I think about the job: translating between technical and business contexts, and building measurement into systems.</p>
+
+      <nav class="carousel-nav">
+        <button class="active" data-target="0">Interacting with Engineers</button>
+        <button data-target="1">Measuring What Matters</button>
+      </nav>
     </header>
 
-    <!-- ── Section 1: Interacting with Engineers ── -->
-    <section>
+    <!-- ── Slide 1: Interacting with Engineers ── -->
+    <div class="carousel-slide active" data-slide="0">
       <div class="section-label">Training Material</div>
       <h2>Interacting with Engineers</h2>
 
       <p>I built this training deck for non-technical program staff who needed to write specifications for software developers. The core insight: if a developer understands clearly <em>what</em> you're trying to do, they'll often have a better idea of <em>how</em> to do it. That's the PM's job — close that gap.</p>
 
-      <ul class="concepts">
-        <li>
-          <strong>Separate business logic from implementation details</strong>
-          <span>Specs should answer WHAT and WHY in plain language before addressing HOW in technical terms. When these are tangled together, developers can't apply their own expertise to the solution.</span>
-        </li>
-        <li>
-          <strong>User stories anchor every feature</strong>
-          <span>"As a ___, I want ___, so that ___." One sentence. Zero implementation details. This clarifies WHO the feature serves and WHY it matters before a single line of code is discussed.</span>
-        </li>
-        <li>
-          <strong>Define complex concepts once, reuse by name</strong>
-          <span>If a condition or workflow appears repeatedly in a spec, define it once with both its business meaning and its technical translation. Then refer to it by name. Otherwise the same condition ends up written six different ways across the spec, and three of them are wrong.</span>
-        </li>
-      </ul>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <strong>Separate business logic from implementation details</strong>
+            <span>Specs should answer WHAT and WHY in plain language before addressing HOW in technical terms. When these are tangled together, developers can't apply their own expertise to the solution.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <strong>User stories anchor every feature</strong>
+            <span>"As a ___, I want ___, so that ___." One sentence. Zero implementation details. This clarifies WHO the feature serves and WHY it matters before a single line of code is discussed.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <strong>Define complex concepts once, reuse by name</strong>
+            <span>If a condition or workflow appears repeatedly in a spec, define it once with both its business meaning and its technical translation. Then refer to it by name. Otherwise the same condition ends up written six different ways across the spec, and three of them are wrong.</span>
+          </div>
+        </div>
+      </div>
 
       <div class="slide-gallery">
         <img src="slide-specifications.png" alt="Slide: Two aspects of specification — business logic and implementation details">
@@ -258,24 +304,31 @@
         <img src="slide-user-stories.png" alt="Slide: User story framework — As a role, I want feature, so that reason">
       </div>
 
-      <div class="callout">
-        <p>I built this because specs were coming in broken in every direction — some were pure implementation details with no business context, others were so vague that developers had to guess, and we kept building the wrong thing. The same skill applies to platform work: if you can understand what domain teams need in their own language, you can translate it to platform language and back. That's how you build a search platform that teams actually use instead of work around.</p>
-      </div>
+      <p>I built this because specs were coming in broken in every direction — some were pure implementation details with no business context, others were so vague that developers had to guess, and we kept building the wrong thing. The same skill applies to platform work: if you can understand what domain teams need in their own language, you can translate it to platform language and back. That's how you build a search platform that teams actually use instead of work around.</p>
 
       <a href="Interacting with Engineers - Anonymized.pptx" class="download-link">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12l-4-4h2.5V2h3v6H12L8 12zm-6 2h12v1.5H2V14z"/></svg>
         Download the full deck (.pptx)
       </a>
-    </section>
 
-    <!-- ── Section 2: COVID Contact Tracing ── -->
-    <section>
+      <div class="carousel-footer">
+        <button disabled>&larr; Previous</button>
+        <div class="carousel-dots">
+          <span class="active"></span>
+          <span></span>
+        </div>
+        <button data-target="1">Next &rarr;</button>
+      </div>
+    </div>
+
+    <!-- ── Slide 2: COVID Contact Tracing ── -->
+    <div class="carousel-slide" data-slide="1">
       <div class="section-label">Case Study</div>
       <h2>Measuring What Matters</h2>
 
       <p>During the COVID-19 pandemic, I supported a state public health agency that was standing up contact tracing operations fast. The critical workflow was bulk case assignment — supervisors assigned batches of new cases to caseworkers every morning. If that process was slow, cases piled up and contacts went untraced.</p>
 
-      <div class="metrics-story">
+      <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-content">
@@ -306,16 +359,44 @@
         </div>
       </div>
 
-      <div class="callout">
-        <p>I care about metrics because I've been in the room when nobody has them. You end up arguing about whether something is slow based on vibes. The stopwatch was step one; the point was to turn that into permanent instrumentation so the data is just there next time someone asks.</p>
+      <p>I care about metrics because I've been in the room when nobody has them. You end up arguing about whether something is slow based on vibes. The stopwatch was step one; the point was to turn that into permanent instrumentation so the data is just there next time someone asks.</p>
+
+      <div class="carousel-footer">
+        <button data-target="0">&larr; Previous</button>
+        <div class="carousel-dots">
+          <span></span>
+          <span class="active"></span>
+        </div>
+        <button disabled>Next &rarr;</button>
       </div>
-    </section>
+    </div>
 
     <footer>
       <a href="https://www.linkedin.com/in/cody-stahl-30443561/" target="_blank" rel="noopener">LinkedIn</a>
     </footer>
 
   </div>
+
+  <script>
+    function showSlide(index) {
+      document.querySelectorAll('.carousel-slide').forEach(function(s) { s.classList.remove('active'); });
+      document.querySelectorAll('.carousel-nav button').forEach(function(b) { b.classList.remove('active'); });
+      document.querySelectorAll('.carousel-slide')[index].classList.add('active');
+      document.querySelectorAll('.carousel-nav button')[index].classList.add('active');
+      document.querySelectorAll('.carousel-dots').forEach(function(dotGroup) {
+        dotGroup.querySelectorAll('span').forEach(function(d, i) {
+          d.classList.toggle('active', i === index);
+        });
+      });
+      window.scrollTo({ top: document.querySelector('header').offsetHeight, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('[data-target]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        showSlide(parseInt(this.getAttribute('data-target')));
+      });
+    });
+  </script>
 
 </body>
 </html>
